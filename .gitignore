@@ -18,6 +18,8 @@ Cargo.lock
 
 /target
 
+# db folder is automatically created by the application on running with cargo
+/db
 
 # IDE settings
 .idea/
