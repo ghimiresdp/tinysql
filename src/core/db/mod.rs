@@ -1,7 +1,5 @@
 use std::{fs, io};
 
-use super::Sql;
-
 mod dtype;
 mod table;
 
@@ -10,6 +8,11 @@ pub(crate) struct Database {
 }
 
 impl Database {
+    pub(crate) fn list() {
+        for file in fs::read_dir("db/").unwrap() {
+            println!("{}", file.unwrap().path().display());
+        }
+    }
     pub(crate) fn create(name: String) -> Self {
         let path = format!("db/{name}");
         match fs::create_dir_all(path.clone()) {
@@ -39,7 +42,7 @@ impl Database {
     pub(crate) fn select(name: String) -> Self {
         Self { name }
     }
-    pub(crate) fn query(&self, query: String){
-        Sql::query(query)
+    pub(crate) fn query(&self, query: String) {
+        println!("query: {query}")
     }
 }
